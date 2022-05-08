@@ -1,6 +1,6 @@
 const path = require("path");
 
-const site_url = "https://future-innovative-crush.glitch.me";
+const site_url = "https://future-innovative-crushe.glitch.me";
 
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
@@ -15,21 +15,31 @@ fastify.register(require("fastify-static"), {
   prefix: "/gifs", // optional: default '/'
 });
 
+fastify.register(require("point-of-view"), {
+  engine: {
+    handlebars: require("handlebars")
+  }
+});
+
 function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
+//removeme
+
 // Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/uwuxdd", function (request, reply) {
+fastify.get("/amogusrealvery", function (request, reply) {
   
   var imgURL = "";
   
-  var randint = Math.floor(Math.random() * 11);
+  var randint = Math.floor(Math.random() * 100);
 
+  var imgEXT = ".gif";
   
-  require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy cowpoland' + randint.toString() + '.jpg'])
+  //require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland' + randint.toString() + '.jpg'])
+  /* gif version */ require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland' + randint.toString() + '.gif'])
   sleep(3000).then(() => {
-    imgURL = site_url + "/gifs/cowpoland" + randint.toString() + ".jpg";
+    imgURL = site_url + "/gifs/cowpoland" + randint.toString() + imgEXT;
     
     
     let params = {
