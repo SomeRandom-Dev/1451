@@ -15,16 +15,20 @@ fastify.register(require("fastify-static"), {
   prefix: "/gifs", // optional: default '/'
 });
 
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 // Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/", function (request, reply) {
+fastify.get("/uwuxdd", function (request, reply) {
   
   var imgURL = "";
   
   var randint = Math.floor(Math.random() * 11);
+
   
-  var child = require('child_process').exec('ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy cowpoland7979.jpg')
-  child.stdout.pipe(process.stdout)
-  child.on('exit', function() {
+  require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy cowpoland' + randint.toString() + '.jpg'])
+  sleep(3000).then(() => {
     imgURL = site_url + "/gifs/cowpoland" + randint.toString() + ".jpg";
     
     
