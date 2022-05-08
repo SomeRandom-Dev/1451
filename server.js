@@ -22,7 +22,7 @@ fastify.get("/", function (request, reply) {
   
   var randint = Math.floor(Math.random() * 11);
   
-  //var child = require('child_process').exec('ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=~/comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=24:box=1:boxcolor=black@0.5:boxborderw=5:x=10:y=10" -codec:a copy ~/public/cowpoland' + randint.toString() + '.jpg')
+  var child = require('child_process').exec('ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy cowpoland7979.jpg')
   child.stdout.pipe(process.stdout)
   child.on('exit', function() {
     imgURL = site_url + "/gifs/cowpoland" + randint.toString() + ".jpg";
