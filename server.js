@@ -3,46 +3,37 @@ const path = require("path");
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
   // set this to true for detailed logging:
-  logger: false
+  logger: false,
+  trustProxy: true
 });
 
 // Setup our static files
 fastify.register(require("fastify-static"), {
   root: path.join(__dirname, "public"),
-  prefix: "/" // optional: default '/'
-});
-
-// fastify-formbody lets us parse incoming forms
-fastify.register(require("fastify-formbody"));
-
-// point-of-view is a templating manager for fastify
-fastify.register(require("point-of-view"), {
-  engine: {
-    handlebars: require("handlebars")
-  }
+  prefix: "/", // optional: default '/'
 });
 
 // Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/", function(request, reply) {
-  // params is an object we'll pass to our handlebars template
-  let params = {
-    greeting: "Hello Node!"
-  };
-  // request.query.paramName <-- a querystring example
-  reply.view("/src/pages/index.hbs", params);
-});
-
-// A POST route to handle form submissions
-fastify.post("/", function(request, reply) {
-  let params = {
-    greeting: "Hello Form!"
-  };
-  // request.body.paramName <-- a form post example
-  reply.view("/src/pages/index.hbs", params);
+fastify.get("/", function (request, reply) {
+  
+  var imgURL = "";
+  
+  var child = require('child_process').exec('ffmpeg -i input.mp4 -vf "drawtext=fontfile=~/comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=24:box=1:boxcolor=black@0.5:boxborderw=5:x=10:y=10" -codec:a copy output.mp4')
+  child.stdout.pipe(process.stdout)
+  child.on('exit', function() {
+    
+    
+    
+    let params = {
+      link_to_img: imgURL,
+    };
+    // request.query.paramName <-- a querystring example
+    reply.view("/src/pages/index.hbs", params);
+  })
 });
 
 // Run the server and report out to the logs
-fastify.listen(process.env.PORT, '0.0.0.0', function(err, address) {
+fastify.listen(process.env.PORT, "0.0.0.0", function (err, address) {
   if (err) {
     fastify.log.error(err);
     process.exit(1);
