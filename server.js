@@ -27,10 +27,10 @@ function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-//removeme
+removeme
 
 // Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/susballer691", function (request, reply) {
+fastify.get("/susballer691daa7", function (request, reply) {
   
   var imgURL = "";
 
@@ -38,19 +38,19 @@ fastify.get("/susballer691", function (request, reply) {
   
   var sleepTime = 1;
   
-  var ipapires = {};
-  
   if (!fs.existsSync("/app/public/cowpoland" + request.ip + imgEXT)) {
-  
-    axios.get('http://ip-api.com/json/' + request.ip).then(res => {ipapires = res;});
-    
-    //require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland' + request.ip + '.jpg'])
-    /* gif version */ 
-      require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland' + request.ip + '.gif'])
-      require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + ipapires.data.country + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=100" -codec:a copy public/cowpoland' + request.ip + '.gif'])
-    /* ----------- */
-    sleepTime = 4000;
-    console.log("generated gif for ip -> " + request.ip);
+    sleepTime = 6000;
+    axios.get('http://ip-api.com/json/' + request.ip).then(res => {
+      //require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland' + request.ip + '.jpg'])
+      /* gif version */ 
+        require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland1st' + request.ip + '.gif'])
+        sleep(3000).then(() => {
+          // require('child_process').spawn('bash', ['-c', 'ffmpeg -i public/cowpoland1st' + request.ip + '.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.country + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=100" -codec:a copy public/cowpoland' + request.ip + '.gif'])
+          require('child_process').spawn('bash', ['-c', 'ffmpeg -i public/cowpoland1st' + request.ip + '.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.country + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=100" -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.city + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=150" -codec:a copy public/cowpoland' + request.ip + '.gif'])
+        })
+      /* ----------- */
+      console.log("generated gif for ip -> " + request.ip);
+    });
   }
   sleep(sleepTime).then(() => {
     imgURL = site_url + "/gifs/cowpoland" + request.ip + imgEXT;
