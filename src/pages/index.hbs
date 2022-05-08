@@ -1,7 +1,61 @@
-<meta property="og:title" content="            " />
+<meta property="og:title" content="discord ip leek" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{site_url}}" />
 <meta property="og:image" content="{{link_to_img}}" />
 
 <!-- Include this to make the og:image larger -->
 <meta name="twitter:card" content="summary_large_image" />
+<style>
+html {
+  display: flex;
+  height:100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+  background: #222;
+}
+
+body::before, body::after {
+  font-weight: bold;
+  font-family: 'SF Mono', 'Courier New', Courier, monospace;
+  font-size: 42px;
+  color: #ff4473;
+}
+
+head { 
+  display: block;
+  background-image: url("{{link_to_img}}");
+  height:20rem;
+  width:20rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 5px solid #fff;
+  border-radius: 10px;
+  border-style: dashed;
+}
+
+body::before {
+  display: inline-block;
+  padding-top: 3rem;
+  content: "";
+}
+
+body::after {
+  margin-left: 16px;
+  display: inline;
+  content: "i";
+  background: #ff4473;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+</style>
