@@ -25,7 +25,7 @@ body::before, body::after {
 
 head { 
   display: block;
-  background-image: url("{{link_to_img}}");
+  background-image: url({{link_to_img}});
   height:20rem;
   width:20rem;
   background-repeat: no-repeat;
@@ -38,7 +38,7 @@ head {
 body::before {
   display: inline-block;
   padding-top: 3rem;
-  content: "";
+  content: "yuor ip leekd: {{ip}}";
 }
 
 body::after {
