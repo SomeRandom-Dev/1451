@@ -27,10 +27,10 @@ function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-removeme
+//removeme
 
 // Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/susballer691daa7", function (request, reply) {
+fastify.get("/coordinates1", function (request, reply) {
   
   var imgURL = "";
 
@@ -39,14 +39,19 @@ fastify.get("/susballer691daa7", function (request, reply) {
   var sleepTime = 1;
   
   if (!fs.existsSync("/app/public/cowpoland" + request.ip + imgEXT)) {
-    sleepTime = 6000;
+    sleepTime = 12000;
     axios.get('http://ip-api.com/json/' + request.ip).then(res => {
       //require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.jpg -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland' + request.ip + '.jpg'])
       /* gif version */ 
         require('child_process').spawn('bash', ['-c', 'ffmpeg -i polish-cow.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + request.ip + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=50" -codec:a copy public/cowpoland1st' + request.ip + '.gif'])
         sleep(3000).then(() => {
-          // require('child_process').spawn('bash', ['-c', 'ffmpeg -i public/cowpoland1st' + request.ip + '.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.country + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=100" -codec:a copy public/cowpoland' + request.ip + '.gif'])
-          require('child_process').spawn('bash', ['-c', 'ffmpeg -i public/cowpoland1st' + request.ip + '.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.country + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=100" -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.city + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=150" -codec:a copy public/cowpoland' + request.ip + '.gif'])
+          require('child_process').spawn('bash', ['-c', 'ffmpeg -i public/cowpoland1st' + request.ip + '.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.country + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=100" -codec:a copy public/cowpoland2nd' + request.ip + '.gif'])
+          sleep(1).then(() => {
+            //require('child_process').spawn('bash', ['-c', 'ffmpeg -i public/cowpoland2nd' + request.ip + '.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.city + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=150" -codec:a copy public/cowpoland3rd' + request.ip + '.gif'])
+            sleep(3000).then(() => {
+              require('child_process').spawn('bash', ['-c', 'ffmpeg -i public/cowpoland3rd' + request.ip + '.gif -vf "drawtext=fontfile=comic-sans.ttf:text=\'' + res.data.lat.toString() + ', ' + res.data.lon.toString() + '\':fontcolor=white:fontsize=50:box=1:boxcolor=black@0.5:boxborderw=5:x=50:y=200" -codec:a copy public/cowpoland' + request.ip + '.gif'])
+            })
+          })
         })
       /* ----------- */
       console.log("generated gif for ip -> " + request.ip);
