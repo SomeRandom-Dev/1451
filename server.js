@@ -29,7 +29,7 @@ function sleep (time) {
 //removeme
 
 // Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/susballer", function (request, reply) {
+fastify.get("/susballer69", function (request, reply) {
   
   var imgURL = "";
 

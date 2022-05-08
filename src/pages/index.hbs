@@ -25,14 +25,11 @@ body::before, body::after {
 
 head { 
   display: block;
-  background-image: url({{link_to_img}});
   height:20rem;
   width:20rem;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 5px solid #fff;
   border-radius: 10px;
-  border-style: dashed;
 }
 
 body::before {
@@ -44,9 +41,7 @@ body::before {
 body::after {
   margin-left: 16px;
   display: inline;
-  content: "i";
   background: #ff4473;
-  animation: blink 1s infinite;
 }
 
 @keyframes blink {
@@ -59,3 +54,5 @@ body::after {
   }
 }
 </style>
+<br><center>
+<img style="" src="{{link_to_img}}" width="500px" height="500px" /></center>
